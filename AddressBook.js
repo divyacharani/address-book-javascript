@@ -21,10 +21,10 @@ let getContact = () => {
     return contactIp;
 }
 
-let countContacts = () => addressBookArr.reduce((total, contact) => total + 1, 0);
+let countContacts = (contactsArray) => contactsArray.reduce((total, contact) => total + 1, 0);
 
 let viewContacts = () => {
-    console.log("Number of contacts in this addressbook : " + countContacts());
+    console.log("Number of contacts in this addressbook : " + countContacts(addressBookArr));
     addressBookArr.forEach(contact => console.log(contact.toString()));
 }
 
@@ -67,14 +67,16 @@ let deleteContact = () => {
     }
 }
 
-let searchByCity = () => {
-    let searchCity = prompt("Enter the city name ");
-    addressBookArr.filter(contact => contact.city == searchCity).forEach(contact => console.log(contact.toString()));
-}
+let searchByCityState = (item) => {
+    let contactsByItemArr = new Array();
+    let itemName = prompt("Enter the " + item + " name ");
+    if (item == "City")
+        contactsByItemArr = addressBookArr.filter(contact => contact.city == itemName);
+    else if (item == "State")
+        contactsByItemArr = addressBookArr.filter(contact => contact.state == itemName);
+    console.log("Number of contacts " + countContacts(contactsByItemArr));
+    contactsByItemArr.forEach(contact => console.log(contact.toString()))
 
-let searchByState = () => {
-    let searchState = prompt("Enter the state name ");
-    addressBookArr.filter(contact => contact.state == searchState).forEach(contact => console.log(contact.toString()));
 }
 
 console.log("Welcome to AddressBook Program!!");
@@ -91,9 +93,9 @@ do {
             break;
         case "4": console.log(deleteContact().toString());
             break;
-        case "5": searchByCity();
+        case "5": searchByCityState("City");
             break;
-        case "6": searchByState();
+        case "6": searchByCityState("State");
             break;
         case "7": console.log("Bye!!");
             break;
