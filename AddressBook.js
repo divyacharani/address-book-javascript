@@ -80,14 +80,30 @@ let searchByCityState = (item) => {
 }
 
 let sortContacts = () => {
-    addressBookArr.sort((c1, c2) => ((c1.firstName + c1.lastName) > (c2.firstName + c2.lastName)) ? 1 : (((c1.firstName + c1.lastName) < (c2.firstName + c2.lastName) ? -1 : 0)));
+    console.log("Sort By\n1. Person Name\n2. City\n3. State\n4. Zip")
+    let choice = prompt("Enter your choice ");
+    switch (choice) {
+        case "1":
+            addressBookArr.sort((c1, c2) => ((c1.firstName + c1.lastName) > (c2.firstName + c2.lastName)) ? 1 : (((c1.firstName + c1.lastName) < (c2.firstName + c2.lastName) ? -1 : 0)));
+            break;
+        case "2":
+            addressBookArr.sort((c1, c2) => (c1.city > c2.city) ? 1 : ((c1.city < c2.city) ? -1 : 0));
+            break;
+        case "3":
+            addressBookArr.sort((c1, c2) => (c1.state > c2.state) ? 1 : ((c1.state < c2.state) ? -1 : 0));
+            break;
+        case "4":
+            addressBookArr.sort((c1, c2) => (c1.zip > c2.zip) ? 1 : ((c1.zip < c2.zip) ? -1 : 0));
+            break;
+        default: console.log("Invalid Choice !!");
+    }
     viewContacts();
 }
 
 console.log("Welcome to AddressBook Program!!");
 let choice = 0;
 do {
-    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Sort contacts by person name\n8. Exit");
+    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Delete Contact\n5. Search Contacts By City\n6. Search Contacts By State\n7. Sort contacts\n8. Exit");
     choice = prompt("Enter Your Choice ");
     switch (choice) {
         case "1": viewContacts();
