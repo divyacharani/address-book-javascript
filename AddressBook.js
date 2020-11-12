@@ -69,12 +69,12 @@ let deleteContact = () => {
 
 let searchByCity = () => {
     let searchCity = prompt("Enter the city name ");
-    return addressBookArr.filter(contact => contact.city == searchCity);
+    addressBookArr.filter(contact => contact.city == searchCity).forEach(contact => console.log(contact.toString()));
 }
 
 let searchByState = () => {
     let searchState = prompt("Enter the state name ");
-    return addressBookArr.filter(contact => contact.state == searchState);
+    addressBookArr.filter(contact => contact.state == searchState).forEach(contact => console.log(contact.toString()));
 }
 
 console.log("Welcome to AddressBook Program!!");
