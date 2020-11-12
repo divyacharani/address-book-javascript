@@ -56,24 +56,44 @@ let getContact = () => {
         console.error(error);
     }
     return contactIp;
-};
+}
 
+let viewContacts = () => {
+    addressBookArr.forEach(contact => console.log(contact.toString()));
+}
 let addContact = (contact) => {
     addressBookArr.push(contact);
     console.log("Contact Added Successfully!!")
 }
 
+let editContact = () => {
+    let frstName = prompt("Enter First Name : ");
+    let lstName = prompt("Enter Lastt Name : ");
+    let index = addressBookArr.findIndex(contact => contact.firstName == frstName && contact.lastName == lstName);
+    if (index == -1)
+        console.log("Could not find the contact!!")
+    else {
+        addressBookArr[index] = getContact();
+        console.log("Contact edited successfully!!");
+    }
+
+}
+
 console.log("Welcome to AddressBook Program!!");
 let choice = 0;
 do {
-    console.log("Choose\n1. Add Contact\n2. Exit");
+    console.log("Choose\n1. View Contacts\n2. Add Contact\n3. Edit Contact By name\n4. Exit");
     choice = prompt("Enter Your Choice ");
     switch (choice) {
-        case "1": addContact(getContact());
+        case "1": viewContacts();
             break;
-        case "2": console.log("Bye!!");
+        case "2": addContact(getContact());
+            break;
+        case "3": editContact();
+            break;
+        case "4": console.log("Bye!!");
             break;
         default: console.log("Invalid Choice !!");
     }
 
-} while (choice != 2)
+} while (choice != 4)
