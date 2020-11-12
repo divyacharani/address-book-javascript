@@ -59,14 +59,20 @@ let getContact = () => {
 }
 
 let countContacts = () => addressBookArr.reduce((total, contact) => total + 1, 0);
+
 let viewContacts = () => {
     console.log("Number of contacts are : " + countContacts());
     addressBookArr.forEach(contact => console.log(contact.toString()));
 }
 
 let addContact = (contact) => {
-    addressBookArr.push(contact);
-    console.log("Contact Added Successfully!!")
+    let index = getindexByName(contact.firstName, contact.lastName);
+    if (index == -1) {
+        addressBookArr.push(contact);
+        console.log("Contact Added Successfully!!");
+    }
+    else
+        console.log("Could not add contact, Name already exists!!");
 }
 
 let getindexByName = (frstName, lstName) => {
