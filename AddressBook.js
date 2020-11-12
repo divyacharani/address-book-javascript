@@ -58,7 +58,9 @@ let getContact = () => {
     return contactIp;
 }
 
+let countContacts = () => addressBookArr.reduce((total, contact) => total + 1, 0);
 let viewContacts = () => {
+    console.log("Number of contacts are : " + countContacts());
     addressBookArr.forEach(contact => console.log(contact.toString()));
 }
 
@@ -108,7 +110,7 @@ do {
             break;
         case "3": editContact();
             break;
-        case "4": console.log(deleteContact());
+        case "4": console.log(deleteContact().toString());
             break;
         case "5": console.log("Bye!!");
             break;
